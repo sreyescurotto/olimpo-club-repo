@@ -70,7 +70,7 @@ export default function Home () {
               </div>
             </div>
           </div>
-          <button onClick={suscribe} class='bg-white text-black font-bold rounded-md py-2 px-4 hover:bg-gray-200 transition-colors duration-300 max-w-md self-center'>
+          <button onClick={suscribe} className='bg-white text-black font-bold rounded-md py-2 px-4 hover:bg-gray-200 transition-colors duration-300 max-w-md self-center'>
             Suscribirse
           </button>
         </div>

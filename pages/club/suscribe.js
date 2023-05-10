@@ -1,7 +1,10 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { useRouter } from 'next/router'
 import Script from 'next/script'
+
+import { buttons } from '../../components/buttons'
 
 export default function Suscribe () {
   const router = useRouter()
@@ -9,30 +12,60 @@ export default function Suscribe () {
     return Math.floor(Math.random() * 1000000000)
   }
   const orderID = generateOrderNumber()
-  //   const [cfreq, setCfreq] = useState(0)
   const [merchandid, setMerchandid] = useState()
   const [token, setToken] = useState('')
   const [amount, setAmount] = useState(100)
   const [selectedFile, setSelectedFile] = useState(null)
+  const [email, setEmail] = useState('')
+  const [name, setName] = useState('')
+  const [dni, setDni] = useState('')
+  const [phone, setPhone] = useState('')
+  const [age, setAge] = useState('')
 
-  function handleFileInputChange (event) {
+  const handleFileInputChange = (event) => {
     const file = event.target.files[0]
     setSelectedFile(file)
   }
+  const handleName = (nam) => {
+    setName(nam)
+  }
+  const handleDni = (dn) => {
+    setDni(dn)
+  }
+  const handlePhone = (ph) => {
+    setPhone(ph)
+  }
+  const handleAge = (ag) => {
+    setAge(ag)
+  }
 
-  const randomString = () => {
-    let text = ''
-    const possible =
-      'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
-
-    for (let i = 0; i < 8; i++) {
-      text += possible.charAt(Math.floor(Math.random() * possible.length))
+  const checkData = () => {
+    if (name === '') {
+      alert('Debe Ingresar su nombre para continuar')
+      return
+    }
+    if (dni === '') {
+      alert('Debe Ingresar su DNI para continuar')
+      return
     }
 
-    return text
+    if (phone === '') {
+      alert('Debe Ingresar su número de celular para continuar')
+      return
+    }
+
+    if (age === '') {
+      alert('Debe Ingresar su edad para continuar')
+      return
+    }
+
+    if (email === '') {
+      alert('Ingresar su correo electrónico para continuar')
+    }
   }
 
   function createOrder () {
+    checkData()
     const options = {
       method: 'POST',
       url: `https://apisandbox.vnforappstest.com/api.ecommerce/v2/ecommerce/token/session/${merchandid}`,
@@ -44,11 +77,11 @@ export default function Suscribe () {
       data: {
         antifraud: {
           merchantDefineData: {
-            MDD4: `${randomString}@gmail.com"`,
+            MDD4: email,
             MDD21: 1,
-            MDD32: '74629686',
-            MDD75: 'Registrado'
-            // MDD77: cfreq
+            MDD32: dni,
+            MDD75: 'Invitado',
+            MDD77: 0
           }
         },
         // recurrenceMaxAmount: `${amount}.0`,
@@ -75,7 +108,7 @@ export default function Suscribe () {
       purchasenumber: orderID,
       amount: `${amount}.0`,
       expirationminutes: '20',
-      timeouturl: 'https://apuestadota.com/paymentError',
+      timeouturl: 'https://olimpoclubperu.com/paymentError',
       merchantname: 'Olimpo Club',
       formbuttoncolor: '#000000',
       // recurrence: 'TRUE',
@@ -85,13 +118,47 @@ export default function Suscribe () {
       // recurrenceamount: `${amount}.0`,
       buttoncolor: 'navy',
       method: 'POST',
-      action: `/api/payment/transition?token=${token}&orderid=${orderID}&amount=${amount}`,
+      action: `/api/payment/transition?token=${token}&orderid=${orderID}&amount=${amount}&email=${email}&name=${name}&dni=${dni}&phone=${phone}&age=${age}`,
       complete: function (params) {
         <h1>LOADING</h1>
       }
     })
     // eslint-disable-next-line no-undef
     VisanetCheckout.open()
+  }
+
+  const handleEmail = (email) => {
+    setEmail(email)
+  }
+
+  const saveUser = () => {
+    buttons.fire({
+      title: '¡Gracias por suscribirte!',
+      text: 'En breve nos pondremos en contacto contigo',
+      icon: 'success'
+    }).then(() => {
+      createOrder()
+    })
+    // const file = selectedFile
+    // const formData = new FormData()
+    // formData.append('nombre', name)
+    // formData.append('dni', dni)
+    // formData.append('celular', phone)
+    // formData.append('edad', age)
+    // formData.append('email', email)
+    // formData.append('file', file)
+    // axios
+    //   .post('/api/backoffice/add/client', formData, {
+    //     headers: {
+    //       'Content-Type': 'multipart/form-data'
+    //     }
+    //   })
+    //   .then((response) => {
+    //     console.log(response)
+    //   })
+    //   .catch((error) => {
+    //     console.log(error.response)
+    //   })
   }
 
   useEffect(() => {
@@ -101,7 +168,11 @@ export default function Suscribe () {
     })
 
     const { amount } = router.query
-    setAmount(amount)
+    if (amount) {
+      setAmount(amount)
+    } else {
+      setAmount(100)
+    }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -116,50 +187,56 @@ export default function Suscribe () {
         <div className='fixed gap-4 left-0 top-0 flex flex-col w-full lg:w-auto border-b border-gray-300 bg-gradient-to-b from-zinc-200 p-4 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static   lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30'>
           <div>
             <p className='font-mono font-bold text-3xl'>Nuevo Socio</p>
-            <form className='max-w-lg mx-auto'>
+            <form className='max-w-lg mx-auto p-6' encType='multipart/form-data'>
               <div className='my-4'>
                 <input
-                  className='bg-transparent appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500'
+                  className='bg-transparent appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-white-700 font-bold leading-tight focus:outline-none  focus:border-blue-500'
                   id='nombre'
                   type='text'
+                  onChange={(e) => handleName(e.target.value)}
                   placeholder='Nombre completo'
                 />
               </div>
               <div className='my-4'>
                 <input
-                  className='bg-transparent appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500'
+                  className='bg-transparent appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-white-700 font-bold leading-tight focus:outline-none  focus:border-blue-500'
                   id='dni'
                   type='text'
+                  onChange={(e) => handleDni(e.target.value)}
                   placeholder='DNI'
                 />
               </div>
               <div className='my-4'>
                 <input
-                  className='bg-transparent appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-white-700 font-bold leading-tight focus:outline-none focus:bg-white focus:border-blue-500'
+                  className='bg-transparent appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-white-700 font-bold font-bold leading-tight focus:outline-none focus:border-blue-500'
                   id='celular'
                   type='text'
+                  onChange={(e) => handlePhone(e.target.value)}
                   placeholder='Celular'
                 />
               </div>
               <div className='my-4'>
                 <input
-                  className='bg-transparent placeholder-white-500 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-white-700 font-bold leading-tight focus:outline-none focus:bg-white focus:border-blue-500'
+                  className='bg-transparent placeholder-white-500 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-white-700 font-bold font-bold leading-tight focus:outline-none focus:border-blue-500'
                   id='edad'
                   type='text'
+                  onChange={(e) => handleAge(e.target.value)}
                   placeholder='Edad'
                 />
               </div>
               <div className='my-4'>
                 <input
-                  className='bg-transparent placeholder-white-500 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-white-700 font-bold leading-tight focus:outline-none focus:bg-white focus:border-blue-500'
+                  className='bg-transparent placeholder-white-500 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-white-700 font-bold font-bold leading-tight focus:outline-none focus:border-blue-500'
                   id='email'
                   type='email'
+                  value={email}
+                  onChange={(e) => handleEmail(e.target.value)}
                   placeholder='Correo Electrónico'
                 />
               </div>
               <div className='my-4'>
                 <input
-                  className='bg-transparent placeholder-white-500 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-white-700 font-bold leading-tight focus:outline-none focus:bg-white focus:border-blue-500'
+                  className='bg-transparent placeholder-white-500 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-white-700 font-bold leading-tight focus:outline-none focus:border-blue-500'
                   id='amount'
                   type='amount'
                   disabled
@@ -168,7 +245,7 @@ export default function Suscribe () {
               </div>
               <div className='my-4'>
                 <input
-                  className='bg-transparent placeholder-white-500 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-white-700 font-bold leading-tight focus:outline-none focus:bg-white focus:border-blue-500'
+                  className='bg-transparent placeholder-white-500 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-white-700 font-bold leading-tight focus:outline-none focus:border-blue-500'
                   id='frecuency'
                   type='frecuency'
                   disabled
@@ -192,7 +269,7 @@ export default function Suscribe () {
                       <path
                         fillRule='evenodd'
                         d='M10 14a4 4 0 100-8 4 4 0 000 8zm0 2a6 6 0 100-12 6 6 0 000 12zm5.94-8.06a2 2 0 11-2.83 2.83 2 2 0 012.83-2.83zM10 18a8 8 0 110-16 8 8 0 010 16z'
-                        clip-rule='evenodd'
+                        clipRule='evenodd'
                       />
                     </svg>
                     <span id='file-name' className='mt-2 text-base leading-normal'>
