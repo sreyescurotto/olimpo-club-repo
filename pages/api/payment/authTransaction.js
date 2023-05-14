@@ -22,19 +22,19 @@ export default async function handler (req, res) {
       order: {
         tokenId: token,
         purchaseNumber: orderid,
-        productId: '329',
+        productId: '001',
         amount: `${amount}.00`,
         currency: 'PEN',
         cardHolder: {
           documentType: '0',
           documentNumer: dni
+        },
+        recurrence: {
+          maxAmount: `${amount}.00`,
+          beneficiaryId: '74629686',
+          frequency: 'MONTHLY',
+          type: 'FIXED'
         }
-        // recurrence: {
-        //   maxAmount: `${amount}.00`,
-        //   beneficiaryId: '74629686',
-        //   frequency: 'MONTHLY',
-        //   type: 'FIXED'
-        // }
       }
     }
   }

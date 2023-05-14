@@ -80,13 +80,13 @@ export default function Suscribe () {
             MDD4: email,
             MDD21: 1,
             MDD32: dni,
-            MDD75: 'Invitado',
+            MDD75: 'Registrado',
             MDD77: 0
           }
         },
-        // recurrenceMaxAmount: `${amount}.0`,
-        channel: 'web',
-        amount: `${amount}.0`
+        recurrenceMaxAmount: 8.5,
+        channel: 'recurrent',
+        amount: 10.0
       }
     }
     axios
@@ -103,20 +103,23 @@ export default function Suscribe () {
     // eslint-disable-next-line no-undef
     VisanetCheckout.configure({
       sessiontoken: sessionKey,
-      channel: 'web',
+      channel: 'recurrent',
       merchantid: merchandid,
       purchasenumber: orderID,
-      amount: `${amount}.0`,
-      expirationminutes: '20',
+      recurrence: 'TRUE',
+      recurrencetype: 'FIXED',
+      recurrencefrequency: 'MONTHLY',
+      recurrencemaxamount: 30.0,
+      recurrenceamount: 10.0,
+      // amount: '90.0',
+      expirationminutes: '5',
       timeouturl: 'https://olimpoclubperu.com/paymentError',
       merchantname: 'Olimpo Club',
-      formbuttoncolor: '#000000',
-      // recurrence: 'TRUE',
-      // recurrencetype: 'FIXED',
-      // recurrencefrequency: 'MONTHLY',
+      cardholdername: 'sergio',
+      cardholderlastname: 'reyes',
+      cardholderemail: 'sreyescurotto@gmail.com',
       // recurrencemaxamount: `${amount}.0`,
       // recurrenceamount: `${amount}.0`,
-      buttoncolor: 'navy',
       method: 'POST',
       action: `/api/payment/transition?token=${token}&orderid=${orderID}&amount=${amount}&email=${email}&name=${name}&dni=${dni}&phone=${phone}&age=${age}`,
       complete: function (params) {
@@ -181,7 +184,7 @@ export default function Suscribe () {
       <Script
         type='text/javascript'
         // src='https://static-content.vnforapps.com/v2/js/checkout.js'
-        src='https://static-content-qas.vnforapps.com/v2/js/checkout.js?qa=true'
+        src='https://static-content-qas.vnforapps.com/v2/js/checkout.js'
       />
       <main className='flex min-h-screen flex-col items-center justify-center'>
         <div className='fixed gap-4 left-0 top-0 flex flex-col w-full lg:w-auto border-b border-gray-300 bg-gradient-to-b from-zinc-200 p-4 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static   lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30'>

@@ -44,9 +44,7 @@ export default function Home () {
                   <span className='text-black font-bold'>PLAN DELUXE</span>
                 </div>
                 <p className='text-black '>
-                  ¡Con Plan Black tienes beneficios exclusivos! Acceso a todas
-                  las sedes de Smart Fit en Perú y Latinoamérica, entrena con 5
-                  invitados al mes y relájate en nuestros sillones de masajes.
+                  ¡Con Plan Premium tienes beneficios exclusivos! Acceso a las principales sedes de Olimpo Restobar con un descuento del 30% del precio de carta. Puedes hacerlo válido en las sedes: Miraflores, San Isidro y Barranco. No aplica descuento sobre promociones. Además de tener los beneficios del PLAN VIP.
                 </p>
               </div>
               <div className='w-3/5 flex justify-center items-center content-center'>
@@ -62,7 +60,7 @@ export default function Home () {
                   <span className='text-black font-bold'>PLAN VIP</span>
                 </div>
                 <p className='text-black'>
-                  Con el Plan Smart puedes hacer uso de todas las instalaciones solo del gimnasio escogido y entrenar sin restricción de horario.
+                  Con el Plan VIP puedes hacer uso de la piscina y todas las instalaciones del Olimpo Club de Puente Piedra y disfrutar de martes a domingo desde las 10:00 am hasta las 4:00 pm
                 </p>
               </div>
               <div className='w-3/5 flex justify-center items-center content-center'>
