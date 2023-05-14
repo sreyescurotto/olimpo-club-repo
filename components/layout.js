@@ -41,9 +41,9 @@ export default function BackofficeLayout ({ children }) {
                       className='menu w-6 h-6'
                     >
                       <path
-                        fill-rule='evenodd'
+                        fillRule='evenodd'
                         d='M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM4 15a1 1 0 100 2h12a1 1 0 100-2H4z'
-                        clip-rule='evenodd'
+                        clipRule='evenodd'
                       />
                     </svg>
                     <svg
@@ -52,9 +52,9 @@ export default function BackofficeLayout ({ children }) {
                       className='close w-6 h-6 hidden'
                     >
                       <path
-                        fill-rule='evenodd'
+                        fillRule='evenodd'
                         d='M14.35 5.65a1 1 0 00-1.414 0L10 8.586 6.065 4.65a1 1 0 00-1.414 1.414L8.586 10l-3.935 3.935a1 1 0 101.414 1.414L10 11.414l3.935 3.935a1 1 0 001.414-1.414L11.414 10l3.935-3.935a1 1 0 000-1.414z'
-                        clip-rule='evenodd'
+                        clipRule='evenodd'
                       />
                     </svg>
                   </button>
