@@ -1,8 +1,8 @@
 'use client'
 
 import React, { useState } from 'react'
-import useAdmin from '../../hooks/useUser'
-import { userServiceFactory } from '../../services/user.service'
+import useAdmin from '../hooks/useUser'
+import { userServiceFactory } from '../services/user.service'
 
 const userService = userServiceFactory()
 
