@@ -38,6 +38,10 @@ export default function Suscribe () {
   const handleAge = (ag) => {
     setAge(ag)
   }
+  const handleEmail = (email) => {
+    setEmail(email)
+  }
+
 
   const checkData = () => {
     if (name === '') {
@@ -86,7 +90,7 @@ export default function Suscribe () {
         },
         recurrenceMaxAmount: 8.5,
         channel: 'recurrent',
-        amount: 10.0
+        amount: `${amount}.0`
       }
     }
     axios
@@ -109,9 +113,9 @@ export default function Suscribe () {
       recurrence: 'TRUE',
       recurrencetype: 'FIXED',
       recurrencefrequency: 'MONTHLY',
-      recurrencemaxamount: 30.0,
-      recurrenceamount: 10.0,
-      // amount: '90.0',
+      recurrencemaxamount: 100.0,
+      recurrenceamount: 50.0,
+      amount: `${amount}.0`,
       expirationminutes: '5',
       timeouturl: 'https://olimpoclubperu.com/paymentError',
       merchantname: 'Olimpo Club',
@@ -128,10 +132,6 @@ export default function Suscribe () {
     })
     // eslint-disable-next-line no-undef
     VisanetCheckout.open()
-  }
-
-  const handleEmail = (email) => {
-    setEmail(email)
   }
 
   const saveUser = () => {
