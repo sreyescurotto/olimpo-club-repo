@@ -1,24 +1,23 @@
-import formidable from "formidable";
-import fs from "fs";
-
-export const config = {
-  api: {
-    bodyParser: false
-  }
-};
+import { excuteQuery } from "../../../../server/db"
 
 export default async function handler (req, res) {
-  const form = new formidable.IncomingForm();
-  form.parse(req, async function (err, fields, files) {
-    await saveFile(files.file);
-    return res.status(201).send("");
-  });
-};
+  if (req.method !== 'POST') {
+    return res.status(405).json({ message: 'Método no permitido' })
+  } 
 
-const saveFile = async (file) => {
-  console.log('file', file)
-  const data = fs.readFileSync(file. _writeStream.path);
-  fs.writeFileSync(`./public/uploads/temp/${file.newFilename}`, data);
-  fs.unlinkSync(file. _writeStream.path);
-  return;
-};
+  const { nombre, apellido, dni, telefono, email, foto } = req.body
+
+  const response = await excuteQuery({
+    query: 'INSERT INTO `usuario` (nombre, apellido, dni, telefono, email, foto) VALUES (?, ?, ?, ?, ?, ?);',
+    values: [nombre, apellido, dni, telefono, email, foto]
+  })
+
+  console.log('qew', response)
+  if (response.affectedRows === 0) {
+    return res.status(400).json({ error: 'No se pudo registrar el cliente' })
+  }
+
+  return res.status(201).json({
+    message: 'Cliente agregado correctamente'
+  })
+}

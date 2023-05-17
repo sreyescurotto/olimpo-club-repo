@@ -1,9 +1,14 @@
 import { useForm } from "react-hook-form"
 import { useState } from "react";
 import axios from 'axios'
+import { useRouter } from "next/router";
+
 import { buttons } from "../../../components/buttons";
+import BackofficeLayout from "../../../components/layout";
 
 export default function AddClient () {
+
+  const router = useRouter()
   const [fileName, setFileName] = useState('')
   const [imageLoaded, setImageLoaded] = useState(false)
 
@@ -62,7 +67,7 @@ export default function AddClient () {
     }
   };
 
-  const send = (data) => {
+  const send = (info) => {
     if (!imageLoaded) {
       buttons.fire({ icon: "error", text: "Debes cargar la foto de tu DNI." });
 
@@ -75,25 +80,42 @@ export default function AddClient () {
 
     fd.append("_method", "PUT");
 
-    fd.append("nombre", data.nombre);
+    fd.append("nombre", info.nombre);
 
-    fd.append("dni", data.dni);
+    fd.append("dni", info.dni);
 
-    fd.append("telefono", data.telefono);
+    fd.append("telefono", info.telefono);
 
-    fd.append("email", data.email);
+    fd.append("email", info.email);
 
-    fd.append("edad", data.edad);
+    fd.append("edad", info.edad);
 
     fd.append("file", file);
 
-    axios.post('/api/backoffice/add/client', fd).then(
+    axios.post('/api/backoffice/save/photo', fd).then(
       (resp) => {
-        buttons.fire({
-          icon: "success",
-          title: "Éxito",
-          text: "Nuestro equipo está revisando la información enviada, espera un poco.",
-        });
+        const { data } = resp;
+        const body = {
+          nombre: info.nombre,
+          apellido: info.apellido,
+          dni: info.dni,
+          telefono: info.telefono,
+          email: info.email,
+          edad: info.edad,
+          foto: data.path,
+        }
+        axios.post('/api/backoffice/add/client', body).then(
+          (resp) => 
+          buttons.fire({
+            icon: "success",
+            title: "Éxito",
+            text: "Cliente agregado correctamente.",
+          }).then(() => router.push('/backoffice/list'))
+        ).catch(err => 
+          buttons.fire({
+            icon: "error",
+            text: "Lo sentimos, hubo un error al procesar la información.",
+          }))
 
         // onSubmit({ ...data, dni_status: 1 });
         // onSubmit(router);
@@ -114,7 +136,7 @@ export default function AddClient () {
   };
 
   return (
-    <>
+    <BackofficeLayout>
       <div>
         <p className='font-mono font-bold text-3xl'>Ingresar Nuevo Cliente</p>
         <form className='max-w-lg mx-auto' onSubmit={handleSubmit(send)} encType='multipart/form-data'>
@@ -139,7 +161,31 @@ export default function AddClient () {
               })}
               required
               type='text'
-              placeholder='Nombre completo'
+              placeholder='Nombres'
+            />
+          </div>
+          <div className='my-4'>
+            <input
+              className='bg-transparent appearance-none border-2 border-gray-200 rounded w-full py-2 px-4  leading-tight focus:outline-none  focus:border-blue-500 text-white-700'
+              id='apellido'
+              {...register("apellido", {
+                required: "Apellidos completo es requerido",
+
+                pattern: {
+                  value: /^[a-zA-Z ]+$/,
+
+                  message: "Solo se admiten letras",
+                },
+
+                maxLength: {
+                  value: 50,
+
+                  message: "Solo se admite 50 caracteres como máximo",
+                },
+              })}
+              required
+              type='text'
+              placeholder='Apellidos'
             />
           </div>
           <div className='my-4'>
@@ -159,7 +205,6 @@ export default function AddClient () {
 
                 maxLength: {
                   value: 16,
-
                   message: "Solo se admite 16 dígitos como máximo",
                 },
               })}
@@ -301,6 +346,6 @@ export default function AddClient () {
           </div>
         </form>
       </div>
-    </>
+    </BackofficeLayout>
   )
 }

@@ -8,11 +8,6 @@ export default function BackofficeLayout ({ children }) {
           <nav className='bg-transparent border-b border-white'>
             <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
               <div className='flex items-center justify-between h-16'>
-                <div className='flex-shrink-0'>
-                  {/* <a href="#" className="font-bold text-white">
-                Logo
-              </a> */}
-                </div>
                 <div className='hidden sm:block'>
                   <div className='flex space-x-4'>
                     <Link href='/backoffice' className='text-white hover:text-gray-300'>
@@ -21,10 +16,10 @@ export default function BackofficeLayout ({ children }) {
                     <Link href='/backoffice/add' className='text-white hover:text-gray-300'>
                       Agregar
                     </Link>
-                    <Link href='/backoffice/list' className='text-white hover:text-gray-300'>
+                    <Link href='/backoffice/register' className='text-white hover:text-gray-300'>
                       Registrar
                     </Link>
-                    <Link href='/backoffice/register' className='text-white hover:text-gray-300'>
+                    <Link href='/backoffice/list' className='text-white hover:text-gray-300'>
                       Listar
                     </Link>
                   </div>
