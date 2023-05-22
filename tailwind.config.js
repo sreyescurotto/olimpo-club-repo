@@ -18,6 +18,7 @@ module.exports = {
         'cpurple': '#D931CB',
         'cblue': '#4A55F7',
         'cgreen': '#1EDC8B',
+        'clightpurple': '#F8EBFF',
       }
     }
   },

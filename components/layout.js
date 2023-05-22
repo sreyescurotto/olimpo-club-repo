@@ -4,7 +4,7 @@ export default function BackofficeLayout ({ children }) {
   return (
     <>
       <main className='flex min-h-screen flex-col items-center justify-center'>
-        <div className='fixed gap-4 left-0 top-0 flex flex-col w-full border-b border-gray-300 bg-gradient-to-b from-zinc-200 p-16 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:dark:bg-zinc-800/30'>
+        <div className='gap-4 left-0 top-0 flex flex-col w-full border-b border-gray-300 bg-clightpurple p-16 backdrop-blur-2xl dark:border-neutral-800 dark:bg-clightpurple-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-clightpurple lg:dark:bg-clightpurple'>
           <nav className='bg-transparent border-b border-white'>
             <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
               <div className='flex items-center justify-between h-16'>

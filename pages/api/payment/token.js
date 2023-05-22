@@ -5,6 +5,7 @@ export default async function handler (req, res) {
     return res.status(405).json({ error: 'Method not allowed' })
   }
 
+  // const merchantId = process.env.NIUBIZ_MERCHANT_TEST_ID
   const merchantId = process.env.NIUBIZ_MERCHANT_TEST_ID
   const options = {
     method: 'GET',
