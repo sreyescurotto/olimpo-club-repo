@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Head from "next/head";
+import Image from "next/image";
 import axios from "axios";
 import { useRouter } from "next/router";
 
@@ -38,12 +39,23 @@ export default function Success() {
             title: "Pago realizado con éxito",
             text: "Tu pago se ha realizado con éxito",
           });
+          axios.put("/api/backoffice/update/suscription", {
+            dni
+          }).then((response) => {
+            console.log(response)
+            console.log('cliente actualizado')
+          })
         } else {
           buttons.fire({
             icon: "error",
             title: "Error al procesar tu pago...",
             text: "Parece que hubo un error con tu medio de pago",
           });
+          axios.delete("/api/backoffice/delete/client", {
+            dni
+          }).then((response) => {
+            console.log(response)
+          })
         }
       })
       .catch((error) => {
@@ -62,14 +74,22 @@ export default function Success() {
       </Head>
       {loading && (
         <div className="flex justify-center items-center h-screen">
-          <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-tpurple-900" />
+          <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-white-900" />
         </div>
       )}
       <main className="flex min-h-screen flex-col items-center justify-center">
+        <div className='absolute top-3 left-10 p-2 md:block hidden'>
+            <Image
+            src='/logo_olimpoclub.png'
+            alt='Olimpo Club'
+            width={200}
+            height={200}
+            />
+          </div>
         <div className="fixed gap-4 left-0 top-0 flex flex-col w-full lg:w-auto bg-gradient-to-b from-clightpurple-200 p-4 backdrop-blur-2xl dark:border-neutral-800 dark:bg-clightpurple-800/30 dark:from-inherit lg:static lg:rounded-xl lg:bg-clightpurple lg:dark:bg-clightpurple-800/30">
           {!loading && !isError && (
             <div className="flex flex-col justify-center items-center">
-              <h2 className="text-4xl text-tpurple font-bold">
+              <h2 className="text-6xl text-tpurple font-bold">
                 ¡Gracias por tu compra!
               </h2>
 
@@ -96,6 +116,12 @@ export default function Success() {
                 <p className="text-2xl text-cblue">
                   Monto: S/. {router.query.amount}.00
                 </p>
+                <p className="text-2xl text-cblue">
+                  Fecha: {new Date(data.header.ecoreTransactionDate).toLocaleString(
+                    "es-ES",
+                    { dateStyle: "full", timeStyle: "short" }
+                  )}
+                </p>
                 <div className="border-t border-cblue-300 my-6" />
                 <p className="text-2xl text-cblue">
                   Nombre: {router.query.name}
@@ -109,17 +135,12 @@ export default function Success() {
                 </p>
                 <p className="text-2xl text-cblue">
                   Tu pago ha sido procesado, <br />
-                  tu suscripcion arrancha desde este momento, <br />
+                  Tu suscripcion arrancha desde este momento, <br />
                   ya puedes disfrutar de nuestras instalaciones y <br /> de
                   todos los beneficio que tienes <br />
                   por ser miembro de Olimpo Club.{" "}
                 </p>
-                <p className="text-2xl text-cblue">
-                  {new Date(data.header.ecoreTransactionDate).toLocaleString(
-                    "es-ES",
-                    { dateStyle: "full", timeStyle: "short" }
-                  )}
-                </p>
+                
               </article>
             </div>
           )}

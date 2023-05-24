@@ -138,11 +138,11 @@ export default function AddClient () {
   return (
     <BackofficeLayout>
       <div>
-        <p className='font-mono font-bold text-3xl'>Ingresar Nuevo Cliente</p>
+        <p className='font-mono font-bold text-3xl text-black'>Ingresar Nuevo Cliente</p>
         <form className='max-w-lg mx-auto' onSubmit={handleSubmit(send)} encType='multipart/form-data'>
           <div className='my-4'>
             <input
-              className='bg-transparent appearance-none border-2 border-gray-200 rounded w-full py-2 px-4  leading-tight focus:outline-none  focus:border-blue-500 text-white-700'
+              className='bg-transparent shadow w-full appearance-none border-2 border-gray-200 rounded w-full py-2 px-4  leading-tight focus:outline-none  focus:border-blue-500 text-black'
               id='nombre'
               {...register("nombre", {
                 required: "Nombre completo es requerido",
@@ -166,7 +166,7 @@ export default function AddClient () {
           </div>
           <div className='my-4'>
             <input
-              className='bg-transparent appearance-none border-2 border-gray-200 rounded w-full py-2 px-4  leading-tight focus:outline-none  focus:border-blue-500 text-white-700'
+              className='bg-transparent shadow w-full appearance-none border-2 border-gray-200 rounded w-full py-2 px-4  leading-tight focus:outline-none  focus:border-blue-500 text-black'
               id='apellido'
               {...register("apellido", {
                 required: "Apellidos completo es requerido",
@@ -190,7 +190,7 @@ export default function AddClient () {
           </div>
           <div className='my-4'>
             <input
-              className='bg-transparent appearance-none border-2 border-gray-200 rounded w-full py-2 px-4  leading-tight focus:outline-none  focus:border-blue-500 text-white-700'
+              className='bg-transparent shadow w-full appearance-none border-2 border-gray-200 rounded w-full py-2 px-4  leading-tight focus:outline-none  focus:border-blue-500 text-black'
               id='dni'
               type='text'
               placeholder='DNI'
@@ -213,7 +213,7 @@ export default function AddClient () {
           </div>
           <div className='my-4'>
             <input
-              className='bg-transparent appearance-none border-2 border-gray-200 rounded w-full py-2 px-4  leading-tight focus:outline-none  focus:border-blue-500 text-white-700'
+              className='bg-transparent shadow w-full appearance-none border-2 border-gray-200 rounded w-full py-2 px-4  leading-tight focus:outline-none  focus:border-blue-500 text-black'
               id='celular'
               type='text'
               {...register("telefono", {
@@ -237,7 +237,7 @@ export default function AddClient () {
           </div>
           <div className='my-4'>
             <input
-              className='bg-transparent placeholder-white-500 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4  leading-tight focus:outline-none  focus:border-blue-500 text-white-700'
+              className='bg-transparent shadow w-full placeholder-white-500 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4  leading-tight focus:outline-none  focus:border-blue-500 text-black'
               id='edad'
               type='text'
               placeholder='Edad'
@@ -261,7 +261,7 @@ export default function AddClient () {
           </div>
           <div className='my-4'>
             <input
-              className='bg-transparent placeholder-white-500 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4  leading-tight focus:outline-none  focus:border-blue-500'
+              className='bg-transparent shadow w-full placeholder-white-500 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4  leading-tight focus:outline-none  focus:border-blue-500'
               id='email'
               type='email'
               
@@ -280,7 +280,7 @@ export default function AddClient () {
           </div>
           {/* <div className='mb-4'>
             <label
-              className='block text-white-700 font-bold mb-2'
+              className='block text-black font-bold mb-2'
               htmlFor='fecha'
               onChange={handleEmail}
             >
@@ -289,7 +289,7 @@ export default function AddClient () {
             <div className='flex'>
               <div className='mr-2'>
                 <input
-                  className='placeholder-red-500 appearance-none border rounded w-full py-2 px-3 text-white-700 leading-tight focus:outline-none focus:shadow-outline form-date bg-transparent'
+                  className='placeholder-red-500 appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline form-date bg-transparent'
                   id='fecha'
                   type='date'
                   placeholder='YYYY-MM-DD'
@@ -300,16 +300,16 @@ export default function AddClient () {
 
           <div className='mb-4'>
             <label
-              className='block text-white-700 font-bold mb-2'
+              className='block text-black font-bold mb-2'
               htmlFor='foto'
             >
               Fotografía
             </label>
             <div className='flex items-center '>
-              <label className='w-64 flex flex-col items-center px-4 py-6 bg-transparent text-blue rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer hover:bg-blue hover:text-white '>
+              <label className='w-full flex flex-col items-center px-4 py-6 bg-transparent text-blue rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer hover:bg-blue hover:text-white '>
                 <svg
                   className='w-8 h-8'
-                  fill='currentColor'
+                  fill='black'
                   viewBox='0 0 20 20'
                 >
                   <path
@@ -318,7 +318,7 @@ export default function AddClient () {
                     clipRule='evenodd'
                   />
                 </svg>
-                <span id='file-name' className='mt-2 text-base leading-normal'>
+                <span id='file-name' className='mt-2 text-base leading-normal text-black'>
                 {fileName.length > 0 ? (
                   fileName
                 ) : (
@@ -338,7 +338,7 @@ export default function AddClient () {
 
           <div className='flex items-center mt-8 justify-center'>
             <button
-              className='bg-white hover:bg-transparent hover:border border hover:text-white text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
+              className='bg-white hover:border border text-black font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
               type='submit'
             >
               Agregar cliente

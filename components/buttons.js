@@ -6,6 +6,6 @@ export const buttons = Swal.mixin({
     cancelButton: 'cancel-button'
   },
   buttonsStyling: false,
-  background: '#081325',
+  background: '#000',
   color: '#fff'
 })

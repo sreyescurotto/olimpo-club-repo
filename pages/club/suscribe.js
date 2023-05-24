@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
+import Image from "next/image";
 import Head from "next/head";
 import axios from "axios";
 import { useRouter } from "next/router";
@@ -18,10 +19,12 @@ export default function Suscribe() {
   const [amount, setAmount] = useState(100);
   const [selectedFile, setSelectedFile] = useState(null);
   const [email, setEmail] = useState("");
+  const [apellido, setApellido] = useState("");
   const [name, setName] = useState("");
   const [dni, setDni] = useState("");
   const [phone, setPhone] = useState("");
   const [age, setAge] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleFileInputChange = (event) => {
     const file = event.target.files[0];
@@ -30,6 +33,9 @@ export default function Suscribe() {
   const handleName = (nam) => {
     setName(nam);
   };
+  const handleApellido = (ap) => {
+    setApellido(ap);
+  }
   const handleDni = (dn) => {
     setDni(dn);
   };
@@ -48,8 +54,12 @@ export default function Suscribe() {
       alert("Debe Ingresar su nombre para continuar");
       return;
     }
+    if (apellido === "") {
+      alert("Debe Ingresar su apellido para continuar");
+      return;
+    }
     if (dni === "") {
-      alert("Debe Ingresar su DNI para continuar");
+      alert("Debe Ingresar su Documento de identidad para continuar");
       return;
     }
 
@@ -65,11 +75,49 @@ export default function Suscribe() {
 
     if (email === "") {
       alert("Ingresar su correo electrónico para continuar");
+      return;
     }
+    let fd = new FormData();
+    fd.append("file", selectedFile);
+
+    setLoading(true);
+
+    axios.post('/api/backoffice/save/photo', fd).then(
+      (resp) => {
+        const { data } = resp;
+        const body = {
+          nombre: name,
+          apellido,
+          dni,
+          telefono: phone,
+          email,
+          edad: age,
+          foto: data.path,
+        }
+        axios.post('/api/backoffice/add/client', body).then(
+          () => 
+          createOrder()
+        ).catch(err => 
+          buttons.fire({
+            icon: "error",
+            text: "Lo sentimos, hubo un error al procesar la información.",
+          }))
+      },
+      (err) => {
+        if (err?.response?.data?.error) {
+          buttons.fire({ icon: "error", text: err.response.data.error });
+        } else {
+          buttons.fire({
+            icon: "error",
+            text: "Lo sentimos, hubo un error al procesar la información.",
+          });
+        }
+      }
+    );
+    setLoading(false);
   };
 
   function createOrder() {
-    checkData();
     const options = {
       method: "POST",
       url: `https://apisandbox.vnforappstest.com/api.ecommerce/v2/ecommerce/token/session/${merchandid}`,
@@ -83,9 +131,9 @@ export default function Suscribe() {
         antifraud: {
           merchantDefineData: {
             MDD4: email,
-            MDD21: 1,
+            MDD21: 0,
             MDD32: dni,
-            MDD75: "Registrado",
+            MDD75: "Invitado",
             MDD77: 0,
           },
         },
@@ -134,38 +182,6 @@ export default function Suscribe() {
     VisanetCheckout.open();
   };
 
-  const saveUser = () => {
-    buttons
-      .fire({
-        title: "¡Gracias por suscribirte!",
-        text: "En breve nos pondremos en contacto contigo",
-        icon: "success",
-      })
-      .then(() => {
-        createOrder();
-      });
-    // const file = selectedFile
-    // const formData = new FormData()
-    // formData.append('nombre', name)
-    // formData.append('dni', dni)
-    // formData.append('celular', phone)
-    // formData.append('edad', age)
-    // formData.append('email', email)
-    // formData.append('file', file)
-    // axios
-    //   .post('/api/backoffice/add/client', formData, {
-    //     headers: {
-    //       'Content-Type': 'multipart/form-data'
-    //     }
-    //   })
-    //   .then((response) => {
-    //     console.log(response)
-    //   })
-    //   .catch((error) => {
-    //     console.log(error.response)
-    //   })
-  };
-
   useEffect(() => {
     axios.get("/api/payment/token").then((response) => {
       setToken(response.data.token);
@@ -194,6 +210,14 @@ export default function Suscribe() {
         src="https://static-content-qas.vnforapps.com/v2/js/checkout.js"
       />
       <main className="flex min-h-screen flex-col items-center justify-center">
+      <div className='absolute top-3 left-10 p-2 md:block hidden'>
+          <Image
+          src='/logo_olimpoclub.png'
+          alt='Olimpo Club'
+          width={200}
+          height={200}
+          />
+        </div>
         <div className="fixed left-0 top-0 flex flex-col w-full lg:w-auto bg-gradient-to-b from-clightpurple-200 p-4 backdrop-blur-2xl dark:border-neutral-800 dark:bg-clightpurple-800/30 dark:from-inherit lg:static lg:rounded-xl lg:bg-clightpurple-200 lg:dark:bg-clightpurple-800/30">
           <div>
             <p className="font-bold text-3xl text-tpurple">Nuevo Socio</p>
@@ -207,7 +231,16 @@ export default function Suscribe() {
                   id="nombre"
                   type="text"
                   onChange={(e) => handleName(e.target.value)}
-                  placeholder="Nombre completo"
+                  placeholder="Nombres"
+                />
+              </div>
+              <div className="my-4">
+                <input
+                  className="bg-transparent appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-tpurple font-bold leading-tight focus:outline-none  focus:border-tpurple"
+                  id="nombre"
+                  type="text"
+                  onChange={(e) => handleApellido(e.target.value)}
+                  placeholder="Apellidos"
                 />
               </div>
               <div className="my-4">
@@ -259,7 +292,7 @@ export default function Suscribe() {
                   id="amount"
                   type="amount"
                   disabled
-                  value={`S/. ${amount}.00`}
+                  value={`${amount == 100 ? "Plan Deluxe" : "Plan VIP"} - S/. ${amount}.00`}
                 />
               </div>
               <div className="my-4">
@@ -321,10 +354,10 @@ export default function Suscribe() {
             </form>
           </div>
           <button
-            onClick={createOrder}
+            onClick={checkData}
             className="bg-white text-black font-bold rounded-md py-2 px-4 hover:bg-gray-200 transition-colors duration-300 max-w-md self-center"
           >
-            Pagar
+            {loading ? 'Cargando ...' : 'Pagar'}
           </button>
         </div>
       </main>

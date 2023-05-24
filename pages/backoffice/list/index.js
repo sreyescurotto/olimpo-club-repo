@@ -54,22 +54,22 @@ export default function listClient() {
   return (
     <BackofficeLayout>
       <div>
-        <p className="font-mono font-bold text-3xl">Lista de Clientes</p>
+        <p className="font-mono font-bold text-3xl text-black">Lista de Clientes</p>
       </div>
       <div className="overflow-x-auto bg-transparent">
-        <table className="table-auto mx-auto border border-white">
+        <table className="table-auto mx-auto border border-gray-300">
           <thead>
             <tr>
-              <th className="px-4 py-2 border text-white-600">ID</th>
-              <th className="px-4 py-2 border text-white-600">DNI</th>
-              <th className="px-4 py-2 border text-white-600">
+              <th className="px-4 py-2 border text-black">ID</th>
+              <th className="px-4 py-2 border text-black">DNI</th>
+              <th className="px-4 py-2 border text-black">
                 Nombres Completos
               </th>
-              <th className="p-2 border text-white-600">Fecha de Ingreso</th>
-              <th className="p-2 border text-white-600">Suscripción</th>
-              <th className="p-2 border text-white-600">Celular</th>
-              <th className="p-2 border text-white-600">Foto</th>
-              <th className="p-2 border text-white-600">Acciones</th>
+              <th className="p-2 border text-black">Fecha de Ingreso</th>
+              <th className="p-2 border text-black">Suscripción</th>
+              <th className="p-2 border text-black">Celular</th>
+              <th className="p-2 border text-black">Foto</th>
+              <th className="p-2 border text-black">Acciones</th>
             </tr>
           </thead>
           <tbody>
@@ -83,12 +83,12 @@ export default function listClient() {
               clients.map((client) => {
                 return (
                   <tr key={client.id}>
-                    <td className="border p-2">{client.id}</td>
-                    <td className="border p-2">{client.dni}</td>
-                    <td className="border p-2">
+                    <td className="border p-2 text-black">{client.id}</td>
+                    <td className="border p-2 text-black">{client.dni}</td>
+                    <td className="border p-2 text-black">
                       {client.nombre} {client.apellido}
                     </td>
-                    <td className="border p-2">{client.fecha_suscripcion !== null ? client.fecha_suscripcion : 'No tiene suscripción'}</td>
+                    <td className="border p-2 text-black">{client.fecha_suscripcion !== null ? client.fecha_suscripcion : 'No tiene suscripción'}</td>
                     <td className="border p-2">
                       {client.suscrito === 1 ? (
                         <span className="inline-block px-2 py-1 text-s font-bold leading-none text-white bg-green-500 rounded-full">
@@ -100,8 +100,8 @@ export default function listClient() {
                         </span>
                       )}
                     </td>
-                    <td className="border p-2">{client.telefono}</td>
-                    <td className="border p-2">
+                    <td className="border p-2 text-black">{client.telefono}</td>
+                    <td className="border p-2 text-black">
                       <img
                         src={`/uploads/temp/${client.foto}`}
                         alt="Picture of the author"
@@ -114,7 +114,7 @@ export default function listClient() {
                           className="heroicon-s-pencil h-12 w-12 text-white-500"
                           viewBox="0 0 20 20"
                           fill="none"
-                          stroke="currentColor"
+                          stroke="black"
                         >
                           <path
                             d="M12.2929 3.29289C12.6834 2.90237 13.3166 2.90237 13.7071 3.29289L16.7071 6.29289C17.0976 6.68342 17.0976 7.31658 16.7071 7.70711L7.41421 17H4V13.5858L12.2929 5.29289C12.6834 4.90237 13.3166 4.90237 13.7071 5.29289V5.29289Z"

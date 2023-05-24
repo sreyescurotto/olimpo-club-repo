@@ -68,7 +68,7 @@ export default function Register() {
     <BackofficeLayout>
       <Modal isOpen={open} onClose={closeModal} user={user} registerAttendance={registerAttendance} search={true}/>
       <div>
-        <label htmlFor="fruits" className="block text-white-700 font-bold mb-2">
+        <label htmlFor="fruits" className="block text-black font-bold mb-2">
           Ingresar Documento de identidad:
         </label>
         <input
