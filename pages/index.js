@@ -43,8 +43,8 @@ export default function Home () {
           />
         </div>
         <div className='fixed gap-4 left-0 top-0 flex flex-col w-full lg:w-auto bg-gradient-to-b from-clightpurple-200 p-4 backdrop-blur-2xl dark:border-neutral-800 dark:bg-clightpurple-800/30 dark:from-inherit lg:static lg:rounded-xl lg:bg-clightpurple-200 lg:dark:bg-clightpurple-800/30'>
-          <h2 className='text-4xl text-tpurple font-bold'>Elige el plan de tu preferencia</h2>
-          <div className='bg-cpurple p-6 rounded cursor-pointer' onClick={() => suscribe(100)}>
+          <h2 className='text-4xl text-tpurple font-bold text-center'>Elige el plan de tu preferencia</h2>
+          <div className='bg-cpurple p-6 rounded cursor-pointer flex-grow xl:h-40' onClick={() => suscribe(100)}>
             <div className='flex flex-col sm:flex-row'>
               <div className='lg:w-2/5 sm:w-full'>
                 <div className='flex gap-3'>
@@ -59,7 +59,7 @@ export default function Home () {
               </div>
             </div>
           </div>
-          <div className='bg-cblue p-6 rounded cursor-pointer' onClick={() => suscribe(50)}>
+          <div className='bg-cblue p-6 rounded cursor-pointer flex-grow xl:h-40' onClick={() => suscribe(50)}>
             <div className='flex flex-col sm:flex-row'>
               <div className='lg:w-2/5 sm:w-full'>
                 <div className='flex gap-3'>
@@ -67,6 +67,8 @@ export default function Home () {
                 </div>
                 <p className='text-white'>
                   Con el Plan VIP puedes hacer uso de la piscina y todas las instalaciones del Olimpo Club de Puente Piedra y disfrutar de martes a domingo desde las 10:00 am hasta las 4:00 pm
+                  <br></br>
+                  <br></br>
                 </p>
               </div>
               <div className='lg:w-3/5 sm:w-full flex justify-end items-center content-center'>
@@ -74,7 +76,6 @@ export default function Home () {
               </div>
             </div>
           </div>
-
         </div>
       </main>
     </div>
