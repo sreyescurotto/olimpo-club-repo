@@ -55,7 +55,7 @@ export default function Home () {
                 </p>
               </div>
               <div className='lg:w-3/5 sm:w-full flex justify-end items-center content-center'>
-                <h3 className='text-7xl font-bold self-center'><span className='text-xl sm:text-lg md:text-base'>S/</span> 100 <span className='text-xl sm:text-lg md:text-base'>,00</span></h3>
+                <h3 className='text-7xl font-bold self-center text-white'><span className='text-xl sm:text-lg md:text-base'>S/</span> 100 <span className='text-xl sm:text-lg md:text-base'>,00</span></h3>
               </div>
             </div>
           </div>
@@ -70,7 +70,7 @@ export default function Home () {
                 </p>
               </div>
               <div className='lg:w-3/5 sm:w-full flex justify-end items-center content-center'>
-                <h3 className='text-7xl font-bold self-center'><span className='text-xl sm:text-lg md:text-base'>S/</span> 50 <span className='text-xl sm:text-lg md:text-base'>,00</span></h3>
+                <h3 className='text-7xl font-bold self-center text-white'><span className='text-xl sm:text-lg md:text-base'>S/</span> 50 <span className='text-xl sm:text-lg md:text-base'>,00</span></h3>
               </div>
             </div>
           </div>

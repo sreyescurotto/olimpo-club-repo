@@ -103,7 +103,7 @@ export default function Success() {
                 <p className="text-2xl text-cblue">
                   {data.dataMap.ACTION_DESCRIPTION}
                 </p>
-                {/* <p className='text-2xl text-cblue'>Tarjeta: {data.dataMap.CARD}</p> */}
+                <p className='text-2xl text-cblue'>Tarjeta: {data.dataMap.CARD}</p>
                 <p className="text-2xl text-cblue">
                   Marca: {data.dataMap.BRAND.toUpperCase()}
                 </p>

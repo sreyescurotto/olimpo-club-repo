@@ -134,7 +134,7 @@ export default function Suscribe() {
             MDD21: 0,
             MDD32: dni,
             MDD75: "Invitado",
-            MDD77: 0,
+            MDD77: 1,
           },
         },
         recurrenceMaxAmount: 100.0,
