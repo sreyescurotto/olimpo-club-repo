@@ -9,7 +9,8 @@ export default async function handler(req, res) {
 
   const options = {
     method: "POST",
-    url: `https://apitestenv.vnforapps.com/api.authorization/v3/authorization/ecommerce/${merchantId}`,
+    // url: `https://apitestenv.vnforapps.com/api.authorization/v3/authorization/ecommerce/${merchantId}`,
+    url: `https://apiprod.vnforapps.com/api.authorization/v3/authorization/ecommerce/${merchantId}`,
     headers: {
       "Content-Type": "application/json",
       // eslint-disable-next-line quote-props
@@ -22,7 +23,7 @@ export default async function handler(req, res) {
       order: {
         tokenId: token,
         purchaseNumber: orderid,
-        productId: "90",
+        productId: "001",
         amount: `${amount}.00`,
         currency: "PEN",
       },

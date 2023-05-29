@@ -6,13 +6,13 @@ export default async function handler (req, res) {
   }
 
   // const merchantId = process.env.NIUBIZ_MERCHANT_TEST_ID
-  const merchantId = process.env.NIUBIZ_MERCHANT_TEST_ID
+  const merchantId = process.env.NIUBIZ_MERCHANT_ID
   const options = {
     method: 'GET',
-    url: process.env.NIUBIZ_CREATE_TOKEN_TEST,
+    url: process.env.NIUBIZ_CREATE_TOKEN,
     headers: {
       accept: 'text/plain',
-      authorization: `Basic ${process.env.NIUBIZ_AUTH_TEST_TOKEN}`
+      authorization: `Basic ${process.env.NIUBIZ_AUTH_TOKEN}`
     }
   }
   try {

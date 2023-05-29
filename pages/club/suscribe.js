@@ -120,8 +120,8 @@ export default function Suscribe() {
   function createOrder() {
     const options = {
       method: "POST",
-      url: `https://apisandbox.vnforappstest.com/api.ecommerce/v2/ecommerce/token/session/${merchandid}`,
-      // url: `https://apiprod.vnforapps.com/api.ecommerce/v2/ecommerce/token/session/${merchandid}`,
+      // url: `https://apisandbox.vnforappstest.com/api.ecommerce/v2/ecommerce/token/session/${merchandid}`,
+      url: `https://apiprod.vnforapps.com/api.ecommerce/v2/ecommerce/token/session/${merchandid}`,
       headers: {
         accept: "application/json",
         "content-type": "application/json",
@@ -206,8 +206,8 @@ export default function Suscribe() {
       </Head>
       <Script
         type="text/javascript"
-        // src='https://static-content.vnforapps.com/v2/js/checkout.js'
-        src="https://static-content-qas.vnforapps.com/v2/js/checkout.js"
+        src='https://static-content.vnforapps.com/v2/js/checkout.js'
+        // src="https://static-content-qas.vnforapps.com/v2/js/checkout.js"
       />
       <main className="flex min-h-screen flex-col items-center justify-center">
       <div className='absolute top-3 left-10 p-2 md:block hidden'>
