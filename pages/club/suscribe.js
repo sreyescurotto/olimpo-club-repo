@@ -82,7 +82,7 @@ export default function Suscribe() {
 
     setLoading(true);
 
-    axios.post('/api/backoffice/save/photo', fd).then(
+    // axios.post('/api/backoffice/save/photo', fd).then(
       (resp) => {
         const { data } = resp;
         const body = {
@@ -92,7 +92,7 @@ export default function Suscribe() {
           telefono: phone,
           email,
           edad: age,
-          foto: data.path,
+          // foto: data.path,
         }
         axios.post('/api/backoffice/add/client', body).then(
           () => 
@@ -113,7 +113,7 @@ export default function Suscribe() {
           });
         }
       }
-    );
+    // );
     setLoading(false);
   };
 
