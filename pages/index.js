@@ -51,7 +51,7 @@ export default function Home () {
                   <span className='text-white font-bold'>PLAN DELUXE</span>
                 </div>
                 <p className='text-white'>
-                  ¡Con Plan Premium tienes beneficios exclusivos! Acceso a las principales sedes de Olimpo Restobar con un descuento del 30% del precio de carta. Puedes hacerlo válido en las sedes: Miraflores, San Isidro y Barranco. No aplica descuento sobre promociones. Además de tener los beneficios del PLAN VIP.
+                  ¡Con Plan Deluxe tienes beneficios exclusivos! Acceso a las principales sedes de Olimpo Restobar con un descuento del 30% del precio de carta. Puedes hacerlo válido en las sedes: Miraflores, San Isidro y Barranco. No aplica descuento sobre promociones. Además de tener los beneficios del PLAN VIP.
                 </p>
               </div>
               <div className='lg:w-3/5 sm:w-full flex justify-end items-center content-center'>
@@ -66,7 +66,7 @@ export default function Home () {
                   <span className='text-white font-bold'>PLAN VIP</span>
                 </div>
                 <p className='text-white'>
-                  Con el Plan VIP puedes hacer uso de la piscina y todas las instalaciones del Olimpo Club de Puente Piedra y disfrutar de martes a domingo desde las 10:00 am hasta las 4:00 pm
+                  Con el Plan VIP puedes hacer uso de la piscina y todas las instalaciones del Olimpo Club de Puente Piedra y disfrutar de martes a domingo desde las 10:00 am hasta las 4:00 pm.
                   <br></br>
                   <br></br>
                 </p>
