@@ -86,7 +86,7 @@ export default function Success() {
             height={200}
             />
           </div>
-        <div className="fixed gap-4 left-0 top-0 flex flex-col w-full lg:w-auto bg-gradient-to-b from-clightpurple-200 p-4 backdrop-blur-2xl dark:border-neutral-800 dark:bg-clightpurple-800/30 dark:from-inherit lg:static lg:rounded-xl lg:bg-clightpurple lg:dark:bg-clightpurple-800/30">
+        <div className="gap-4 left-0 top-0 flex flex-col w-full lg:w-auto bg-gradient-to-b from-clightpurple-200 p-4 backdrop-blur-2xl dark:border-neutral-800 dark:bg-clightpurple-800/30 dark:from-inherit lg:static lg:rounded-xl lg:bg-clightpurple lg:dark:bg-clightpurple-800/30">
           {!loading && !isError && (
             <div className="flex flex-col justify-center items-center">
               <h2 className="text-6xl text-tpurple font-bold">
