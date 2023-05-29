@@ -44,7 +44,7 @@ export default function Home () {
         </div>
         <div className='fixed gap-4 left-0 top-0 flex flex-col w-full lg:w-auto bg-gradient-to-b from-clightpurple-200 p-4 backdrop-blur-2xl dark:border-neutral-800 dark:bg-clightpurple-800/30 dark:from-inherit lg:static lg:rounded-xl lg:bg-clightpurple-200 lg:dark:bg-clightpurple-800/30'>
           <h2 className='text-4xl text-tpurple font-bold text-center'>Elige el plan de tu preferencia</h2>
-          <div className='bg-cpurple p-6 rounded cursor-pointer flex-grow xl:h-40' onClick={() => suscribe(100)}>
+          <div className='bg-cpurple p-6 rounded cursor-pointer flex-grow xl:h-40' onClick={() => suscribe(1)}>
             <div className='flex flex-col sm:flex-row'>
               <div className='lg:w-2/5 sm:w-full'>
                 <div className='flex gap-3'>

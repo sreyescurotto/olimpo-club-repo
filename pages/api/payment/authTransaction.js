@@ -5,8 +5,8 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: "Method not allowed" });
   }
   const { auth, token, orderid, amount, dni } = req.body;
-  const merchantId = process.env.NIUBIZ_MERCHANT_TEST_ID;
-
+  const merchantId = process.env.NIUBIZ_MERCHANT_ID;
+console.log('$$$$$$$$$$$$$$$$$4444', amount)
   const options = {
     method: "POST",
     // url: `https://apitestenv.vnforapps.com/api.authorization/v3/authorization/ecommerce/${merchantId}`,
